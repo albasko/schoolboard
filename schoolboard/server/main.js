@@ -26,4 +26,17 @@ Meteor.startup(() => {
     		 });
     }
     console.log(Homework.findOne());
+    if (!Events.findOne()){
+        console.log("No events yet. Creating starter data.");
+          Events.insert({
+            event_title:"Go to school", 
+            start_date:"09/01/16", 
+            start_time: "12.00PM",
+            end_date:"09/01/16", 
+            end_time: "12.00PM",
+            event_description: "First day of school",
+            event_address: "our school"
+             });
+        }
+         console.log(Events.findOne());
 });

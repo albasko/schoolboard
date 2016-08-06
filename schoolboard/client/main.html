@@ -7,7 +7,7 @@
       {{> navigation}}
       <div class="container ">
         {{> homework_list}}
-      {{> calendar}}
+      {{> event_list}}
       {{> blog}}
       </div>
       
@@ -121,20 +121,113 @@
                   <label for="comments">Comments</label>
                 </div>
               </div>
-              <button type="submit" class="btn">Submit</button>
+              <button type="submit" class="btn modal-action modal-close yellow waves-green black-text right">Submit</button>
             </form>
           </div><!--/row-->
           
     </div>
 
-    <div class="modal-footer">
-     <!--  <button class="btn waves-effect modal-close yellow waves-green black-text" name="action">
+    <!-- <div class="modal-footer">
+      <button class="btn waves-effect modal-close yellow waves-green black-text" name="action">
         Submit
-      </button> -->
+      </button>
       <a href="#!" class=" modal-action modal-close waves-effect yellow waves-green btn black-text">Close</a>
-    </div>
+    </div> -->
   </div>
   </template>
+
+
+<!--event list template-->
+<template name="event_list">
+    <div class="card-panel">
+      <h2 class="header">Calendar</h2>
+       <ul class="collection">
+      {{#each events}}
+        {{>event_item}}
+      {{/each}}
+      {{>event_add_form}}
+   </ul>
+</div>
+  <!-- Calendar Modal -->
+  <!-- <div id="modal3" class="modal">
+    <div class="modal-content">
+      <h4>Add event modal form</h4>
+     
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Add event</a>
+    </div>
+  </div>
+     --><!--/card panel-->
+
+</template>
+<!--event item template-->
+<template name="event_item">
+    <a href="#!" class="collection-item avatar black-text">
+      <i class="material-icons circle green lighten-2">perm_contact_calendar</i>
+      <h6>{{event_title}}</h6>
+      <ul>
+        <li>{{start_date}} {{start_time}}</li>
+        <li class="truncate">{{event_description}}</li>
+        <li>at {{event_address}}</li>
+        <li></li>
+      </ul>
+    </a>   
+  
+</template>
+
+<!--add event form template-->
+<template name="event_add_form">
+  <a class="waves-effect waves-light btn yellow accent-2 black-text js-toggle-event-form" href="#!">Add event</a>
+  <div class="row">
+    <div id="event-form" class="hidden_div">
+        <form class="col s12 js-submit-event">
+          <div class="row">
+            <div class="input-field col s6">
+              <input placeholder="Start day" id="start_date" type="date" class="validate">
+              <label for="start_date" class="active">Start date</label>
+            </div>
+             <div class="input-field col s6">
+              <input placeholder="Start day" id="start_time" type="time" class="validate">
+              <label for="start_time" class="active">Start time</label>
+            </div>
+          </div>
+             <div class="row">
+            <div class="input-field col s6">
+              <input placeholder="End day" id="end_date" type="date" class="validate">
+              <label for="end_date" class="active">End date</label>
+            </div>
+             <div class="input-field col s6">
+              <input placeholder="End time" id="end_time" type="time" class="validate">
+              <label for="end_time" class="active">Finish</label>
+            </div>
+            
+          </div>
+          
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="event_title" type="text" class="validate">
+              <label for="event_title">Event name</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <textarea id="event_description" class="materialize-textarea"></textarea>
+              <label for="event_description">Event description</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="event_address" type="text" class="validate">
+              <label for="event_address">Address</label>
+            </div>
+          </div>
+          <button type="submit" class="btn yellow waves-green black-text right">Submit</button>
+        </form>
+      </div><!--/ hidden_div-->
+    </div><!--/ row-->
+        
+</template>
 
 <!--blog template-->
 <template name="blog">
@@ -145,35 +238,3 @@
         </div>
       </div>
 </template>
-
-<!--calendar template-->
-<template name="calendar">
-    <div class="card-panel">
-      <h2 class="header">Calendar</h2>
-      <ul class="collection">
-    <a href="#!" class="collection-item avatar black-text">
-      <i class="material-icons circle green lighten-2">folder</i>
-      <span class="title">Event title</span>
-      <p>Date<br>
-         Details
-      </p>
-      
-   </a>   
-  </ul>
-   
-   <a class="waves-effect waves-light btn modal-trigger yellow accent-2 black-text" href="#modal3">Add event</a>
-
-  <!-- Calendar Modal -->
-  <div id="modal3" class="modal">
-    <div class="modal-content">
-      <h4>Add event modal form</h4>
-     
-    </div>
-    <div class="modal-footer">
-      <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Add event</a>
-    </div>
-  </div>
-    </div><!--/card panel-->
-  
-</template>
-
