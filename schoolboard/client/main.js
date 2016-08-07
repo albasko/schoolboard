@@ -3,6 +3,26 @@ import { ReactiveVar } from 'meteor/reactive-var';
 
 import './main.html';
 
+//
+//router configuration
+//
+
+Router.configure({
+  layoutTemplate: 'ApplicationLayout'
+});
+
+Router.route('/', function() {
+  		this.render('navigation',{
+    		to:"navbar"
+  		});
+  		this.render('homework_list',{
+    		to: "part1"
+  		});
+  		this.render('event_list',{
+    		to: "part2"
+  		});
+	});
+
 Template.homework_list.helpers({
 	homework: function(){
 		return Homework.find({});

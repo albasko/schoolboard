@@ -4,15 +4,26 @@
 </head>
 
 <body class="green lighten-5">
-      {{> navigation}}
+     <!--  {{> navigation}}
       <div class="container ">
         {{> homework_list}}
-      {{> event_list}}
-      {{> blog}}
+        {{> event_list}}
       </div>
-      
+       -->
   
 </body>
+
+<template name="ApplicationLayout">
+  <div class="container ">
+    {{> yield "navbar"}}
+    {{> yield "part1"}}
+    {{> yield "part2"}}
+  </div>
+    
+    
+    
+</template>
+
 <!--navigation template-->
 <template name="navigation">
   <nav class="green">
@@ -230,7 +241,7 @@
 </template>
 
 <!--blog template-->
-<template name="blog">
+<!-- <template name="blog">
    <div class="row">
         <div class="col s12">
           <h2 class="header">Blog</h2>
@@ -238,3 +249,4 @@
         </div>
       </div>
 </template>
+ -->
