@@ -12,16 +12,44 @@ Router.configure({
 });
 
 Router.route('/', function() {
-  		this.render('navigation',{
-    		to:"navbar"
-  		});
+  		this.layout('ApplicationLayout');
+  		
   		this.render('homework_list',{
     		to: "part1"
   		});
   		this.render('event_list',{
     		to: "part2"
   		});
+
+  		//alert(Router.current().url);
 	});
+Router.route('/add_homework', function() {
+  		//alert(Router.current().url);
+  		
+  		this.render('homework_form',{
+    		to: "part1"
+  		});
+  		this.render('footer',{
+    		to: "part2"
+  		});
+  		
+	});
+
+Router.route('/add_event', function() {
+  		//alert(Router.current().url);
+  		
+  		this.render('event_add_form',{
+    		to: "part1"
+  		});
+  		this.render('footer',{
+    		to: "part2"
+  		});
+  		
+	});
+
+
+// infiniscroll
+
 
 Template.homework_list.helpers({
 	homework: function(){
@@ -72,6 +100,7 @@ Template.homework_item.events({
 })
 
 Template.homework_form.events({
+		
 		"submit .js-submit-homework":function(event){
 
 			var due_date = event.target.due_date.value;
@@ -88,10 +117,27 @@ Template.homework_form.events({
 				subject:  subject
 				});
 			console.log("inserted");
-					
-						
-		}
+			
+			event.preventDefault();
+			Router.go('/');
+			//alert("aaa"); 
+			//window.location.href = '/';
+			}
+		
 	});
+
+Template.homework_form.onRendered(function(){
+	$('select').material_select();
+})
+Template.event_item.events({
+	"click .js-modal":function(event){
+		console.log("modal clicked");
+		var event_id = this._id;
+		console.log(event_id);
+		$('#'+ event_id).openModal();
+	} 
+})
+
 Template.event_add_form.events({
 		"submit .js-submit-event":function(event){
 
@@ -112,12 +158,14 @@ Template.event_add_form.events({
             	event_description: event_description,
             	event_address: event_address
 				});
-			$(".hidden_div").hide();
+			
+			event.preventDefault();
+			Router.go('/');
 			console.log("inserted");
-		},
-		"click .js-toggle-event-form":function(event){
-			$("#event-form").toggle('slow');
 		}
+		// "click .js-toggle-event-form":function(event){
+		// 	$("#event-form").toggle('slow');
+		// }
 	});
 
 // Template.calendar_add_form.rendered=function() {
@@ -130,6 +178,6 @@ $(document).ready(function(){
 	$(".button-collapse").sideNav(
 		);
 	$('.modal-trigger').leanModal();
-	$('select').material_select();
+	
 });
 

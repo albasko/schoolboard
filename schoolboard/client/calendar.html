@@ -1,0 +1,99 @@
+<!--event list template-->
+<template name="event_list">
+    <div class="card-panel">
+      <h2 class="header">Calendar</h2>
+       <ul class="collection">
+      {{#each events}}
+        {{>event_item}}
+      {{/each}}
+      </ul>
+       <a class="waves-effect waves-light btn yellow accent-2 black-text js-toggle-event-form" href="/add_event">Add event</a>
+      
+  
+</div>
+
+</template>
+
+<!--event item template-->
+<template name="event_item">
+    <a class="collection-item avatar black-text modal-trigger js-modal" href="#{{event_id}}" >
+      <i class="material-icons circle green lighten-2">perm_contact_calendar</i>
+      <h6>{{event_title}}</h6>
+      <ul>
+        <li>{{start_date}} {{start_time}}</li>
+        <li>{{event_description}}</li>
+        <li>at {{event_address}}</li>
+        <li></li>
+      </ul>
+    </a>
+       <!-- homework details modal  -->
+  <div id="{{event_id}}" class="modal">
+    <div class="modal-content">
+      <h4>{{event_title}}</h4>
+      <ul>
+        <li>{{start_date}} {{start_time}}</li>
+        <li>{{end_date}} {{end_time}}</li>
+        <li>{{event_description}}</li>
+        <li>{{event_address}}</li>
+      </ul>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Close</a>
+    </div>
+  </div>
+  
+</template>
+
+<!--add event form template-->
+<template name="event_add_form">
+  <div class="card-panel">
+  <div class="row">
+    <!-- <div id="event-form" class="hidden_div"> -->
+        <form class="col s12 js-submit-event">
+          <div class="row">
+            <div class="input-field col s6">
+              <input placeholder="Start day" id="start_date" type="date" class="validate" required>
+              <label for="start_date" class="active">Start date</label>
+            </div>
+             <div class="input-field col s6">
+              <input placeholder="Start day" id="start_time" type="time" class="validate">
+              <label for="start_time" class="active">Start time</label>
+            </div>
+          </div>
+             <div class="row">
+            <div class="input-field col s6">
+              <input placeholder="End day" id="end_date" type="date" class="validate">
+              <label for="end_date" class="active">End date</label>
+            </div>
+             <div class="input-field col s6">
+              <input placeholder="End time" id="end_time" type="time" class="validate">
+              <label for="end_time" class="active">Finish</label>
+            </div>
+            
+          </div>
+          
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="event_title" type="text" class="validate" required>
+              <label for="event_title">Event name</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <textarea id="event_description" class="materialize-textarea" required></textarea>
+              <label for="event_description">Event description</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="event_address" type="text" class="validate">
+              <label for="event_address">Address</label>
+            </div>
+          </div>
+          <button type="submit" class="btn yellow waves-green black-text right">Submit</button>
+        </form>
+    <!--   </div>/ hidden_div -->
+    </div><!--/ row-->
+  </div><!--/card panel-->
+        
+</template>

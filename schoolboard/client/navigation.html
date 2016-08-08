@@ -1,0 +1,24 @@
+<!--navigation template-->
+<template name="navigation">
+  <nav class="green">
+    <div class="nav-wrapper container">
+      <a href="/" class="brand-logo">Schoolboard</a>
+      <ul id="nav-mobile" class="right hide-on-small-only">
+        <li><a href="/">Log in</a></li>
+      </ul>
+    
+    <!-- These navigation links appear when the web page gets narrow. -->
+    <!-- They appear when the user clicks the hamburger menu. -->
+    <ul class="side-nav" id="slide-out">
+      <li><a href="about.html">About</a></li>
+      <li><a href="privacy.html">Log in</a></li>
+    </ul>
+        {{> hamburger}}
+    </div><!--/nav-vrapper container-->
+  </nav>
+</template> 
+<!--hamburger template-->
+<template name="hamburger">
+      <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
+</template>
+
